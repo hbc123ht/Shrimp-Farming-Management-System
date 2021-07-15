@@ -24,3 +24,5 @@ $ python3 manage.py migrate
 $ python3 manage.py runserver
 ```
 
+That's it, access localhost:8000 on a dummy browser to view the app.
+
