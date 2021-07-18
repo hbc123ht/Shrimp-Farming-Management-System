@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    # 3rd party
     'crispy_forms',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,12 @@ STATICFILES_DIRS = [
 
 LOGIN_URL = '/login/'
 
+ASGI_APPLICATION = 'ibm_hackathon.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
