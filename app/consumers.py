@@ -4,31 +4,23 @@ import json
 
 class Consumer(AsyncWebsocketConsumer):
     async def connect(self):
-       
+        self.user_name = self.scope['url_route']['kwargs']['user_name']
+
+        await self.channel_layer.group_add(
+            self.user_name,
+            self.channel_name
+        )
+
         await self.accept()
 
     async def disconnect(self, close_code):
-        pass
 
-    # Receive message from WebSocket
-    async def receive(self, text_data=None,bytes_data = None):
-
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
-        # Send message to room group
-        await self.channel_layer.group_send(
-            self.chat_group_name,
-            {
-                'type': 'recieve_group_message',
-                'message': message
-            }
+        await self.channel_layer.group_discard(
+            self.user_name,
+            self.channel_name
         )
+        await self.close()
+    
+    async def update_params(self, event):
+        await self.send(text_data=json.dumps(event['text']))
 
-    async def recieve_group_message(self, event):
-        message = event['message']
-
-        # Send message to WebSocket
-        await self.send(
-             text_data=json.dumps({
-            'message': message
-        }))
