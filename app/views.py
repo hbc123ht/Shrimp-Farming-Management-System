@@ -59,7 +59,6 @@ def update_params(request, username):
 
   
     
-
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": {'Hiep' : 'CP'},})
     

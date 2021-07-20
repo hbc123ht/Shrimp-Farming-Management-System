@@ -5,6 +5,8 @@ $(document).ready(function () {
         '/ws/' + CurrentUser + '/');
   
     socket.onmessage = function (e) {
-        
+        console.log("Fsdfs");
+        document.getElementById('name').innerHTML = 123;
+
     };
 });
