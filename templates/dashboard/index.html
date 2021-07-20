@@ -1,2 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block main %}
+<p1>{{ params.user.name }}</p1>
+<script>
+    let CurrentUser = '{{ request.user.username }}';
+</script>
+<script src="{% static 'js/app.js' %}"></script>   
+{% endblock %}
