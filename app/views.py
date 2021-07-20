@@ -54,11 +54,12 @@ def update_params(request, username):
     except:
         return Response(status.HTTP_401_UNAUTHORIZED)
 
+    
     if not user.check_password(request.data['password']):
         return Response(status.HTTP_401_UNAUTHORIZED)
 
-  
-    
+    data = request.data  # data is uploaded from IoT
+    #  print(data)
 
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": {'Hiep' : 'CP'},})
