@@ -1,51 +1,13 @@
 import json
+from django.conf import settings
 # checking quality of parameter 
 # based on http://www.binhlan.com/Chat-luong-nuoc-nuoi-tom-ca.html?fbclid=IwAR3d-6WkSvgOMufUlNOEKBr3gOIPfnmUgkTtd5tq7LoN0DUUPhuNv-wkaGY#N7
-def CheckQuality(temp, salinity, clarity, pH, alkalinity, oxygen, hydrogen_sulfide, amonia, nitrit, Ca, Mg, K):
-    # temperature with  unit of Celcious degree
-    if temp < 20 or temp > 30:
-        if temp < 20:
-            return "The temperature is too low, it should be higher than 20 Celcious degree"
-        elif temp > 30:
-            return "The temperature is too high, it should be lower than 30 Celcious degree"
-    # salinity with unit of 1/1000
-    if salinity < 5 or salinity > 25:
-        if salinity < 5:
-            return "The salinity of water is too low, it should be higher than 0.5%"
-        elif salinity > 25:
-            return "The salinity of water is too high, it should be lower than 2.5%"
-    # clarity with unit of cm
-    if clarity < 30 or clarity > 35:
-        if clarity < 30:
-            return "The clarity of water is too low, it should be higher than 30cm"
-        elif clarity > 35:
-            return "The clarity of water is too high, it should be lower than 35cm"
-    if pH < 7.5 or pH > 8.5:
-        if clarity < 7.5:
-            return "The pH value is too low, it should be higher than 7.5"
-        elif clarity > 8.5:
-            return "The pH value is too high, it should be lower than 8.5"
-    # aklanity with unit of mg/l
-    if alkalinity < 100 or alkalinity > 150:
-        if alkalinity < 100:
-            return "The alkalinity is too low, it should be high than 100 mg/l"
-        elif alkalinity > 150:
-            return "The alkalinity is too high, it should be lower than 150 mg/l"
-    # oxygen with unit of mg/l
-    if oxygen < 5:
-        return "The oxygen value is low, it should be higher than 5 mg/l"
-    # hydrogen sulfide poison with unit of mg/l
-    if hydrogen_sulfide > 0.03:
-        return "The hydrogen sulfide (H2S) value is high, it should be lower than 0.03 mg/l"
-    # amonia poison with unit of mg/l 
-    if amonia > 0.1: 
-        return "The amonia value is high, it should be lower than 0.1 mg/l"
-    # nitrit poison with unit of mg/l
-    if nitrit > 0.2:
-        return "The nitrit value is high, it should be lower than 0.2 mg/l"
-    # rate of minerals 
-    if Mg/Ca != 3.2 or K/Ca != 0.9:
-        return "The rate of Mg:Ca:K should be 3.2:1:0.9"
+def CheckQuality(key, value):
+    MIN = settings.RULES['{}_min'.format(key)]
+    MAX = settings.RULES['{}_max'.format(key)]
+    print(MIN)
+    print(MAX)
+    return
 
 
 def score(center_point, real_point, low, high):
