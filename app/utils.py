@@ -5,9 +5,16 @@ from django.conf import settings
 def CheckQuality(key, value):
     MIN = settings.RULES['{}_min'.format(key)]
     MAX = settings.RULES['{}_max'.format(key)]
-    print(MIN)
-    print(MAX)
-    return
+    if MIN is not None and value < MIN:
+        return "The value is too low, it should be higher than " + MIN + " and lower than " + MAX
+    elif MAX is not None and value > MAX:
+        return "The value is too high, it should be higher than " + MIN + " and lower than " + MAX
+    elif MIN is None and value > MAX:
+        return "The value is too high, it should be lower than " + MAX
+    elif MAX is None and value < MIN:
+        return "The value is too low, it should be higher than " + MIN
+    else:
+        return "The value is fine"
 
 
 def score(center_point, real_point, low, high):
@@ -29,6 +36,7 @@ def avg_score(temp, salinity, clarity, pH, alkalinity, oxygen, hydrogen_sulfide,
     clarity_score = score(32.5, clarity, 30, 35)
     pH_score = score(8, pH, 7.5, 8.5)
     alkalinity_score = score(125, alkalinity, 100, 150)
+    
     oxygen_score = 0
     if oxygen_score < 3.5:
         oxygen_score = 0
@@ -36,6 +44,7 @@ def avg_score(temp, salinity, clarity, pH, alkalinity, oxygen, hydrogen_sulfide,
         oxygen_score = 1
     else:
         oxygen_score = (oxygen - 3.5)/ (5 - 3.5)
+
     hydrogen_sulfide_score = poison_score(0, hydrogen_sulfide, 0.03)
     amonia_score = poison_score(0, amonia, 0.1)
     nitrit_score = poison_score(0, nitrit, 0.2)    
