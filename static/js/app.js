@@ -5,6 +5,8 @@ $(document).ready(function () {
         '/ws/' + CurrentUser + '/');
   
     socket.onmessage = function (e) {
-        
+        console.log(e.data);
+        document.getElementById('name').innerHTML = 123;
+
     };
 });

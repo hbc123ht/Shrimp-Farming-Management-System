@@ -31,4 +31,3 @@ class Parameters():
         self.Ca               = round(uniform(24,30),1)
         self.Mg               = round(uniform(8,10),2)
         self.K                = round(uniform(8,9),2)
-

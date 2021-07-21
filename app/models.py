@@ -16,17 +16,3 @@ class Parameters(models.Model):
     hydrogen_sulfide = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('hydrogen_sulfide'), null = True, blank = True)
     amonia           = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('amonia'), null = True, blank = True)
     nitrit           = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('nitrit'), null = True, blank = True)
-    Ca               = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('Ca'), null = True, blank = True)
-    Mg               = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('Mg'), null = True, blank = True)
-    K                = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('K'), null = True, blank = True)
-
-    
-
-
-
-
-
-
-
-
-

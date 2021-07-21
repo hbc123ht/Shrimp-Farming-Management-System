@@ -139,3 +139,35 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# Rules
+
+RULES = {
+    'temp_min' : 20, 
+    'temp_max' : 30,
+
+    'salinity_min' : 5,
+    'salinity_max' : 25, 
+
+    'clarity_min' : 30,
+    'clarity_max' : 35, 
+    
+    'pH_min' : 7.5,
+    'pH_max' : 8.5, 
+    
+    'alkalinity_min' : 100, 
+    'alkalinity_max' : 150, 
+    
+    'oxygen_min' : 5,
+    'oxygen_max' : None, 
+    
+    'hydrogen_sulfide_min' : None,
+    'hydrogen_sulfide_max' : 0.03,
+
+    'amonia_min' : None,
+    'amonia_max' : 0.01, 
+    
+    'nitrit_min' : None,
+    'nitrit_max' : 0.2, 
+}
+

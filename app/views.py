@@ -1,3 +1,4 @@
+from app.utils import CheckQuality
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
@@ -59,10 +60,18 @@ def update_params(request, username):
         return Response(status.HTTP_401_UNAUTHORIZED)
 
     data = request.data  # data is uploaded from IoT
-    #  print(data)
+    
+    # list of parameters to be checked
+    params = ['temp', 'salinity', 'clarity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
 
+    output = {}     # output for json data
+    for param in params:
+        output[param + '_value'] = data[param]
+        output[param + '_notice'] = CheckQuality(param, data[param])
+
+ 
     channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": {'Hiep' : 'CP'},})
+    async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": output})
     
     
 
