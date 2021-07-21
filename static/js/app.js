@@ -6,7 +6,9 @@ $(document).ready(function () {
   
     socket.onmessage = function (e) {
         console.log(e.data);
-        document.getElementById('name').innerHTML = 123;
-
+        for(var key in e.data){
+            document.getElementById(key).innerHTML = e.data[key];
+        }
+        
     };
 });
