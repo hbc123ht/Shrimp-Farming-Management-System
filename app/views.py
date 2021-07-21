@@ -50,6 +50,7 @@ def update_params(request, username):
     :username username of an user
     :return status code
     """
+    print(request.data)
     try:
         user = User.objects.get(username = username)
     except:
@@ -60,9 +61,8 @@ def update_params(request, username):
         return Response(status.HTTP_401_UNAUTHORIZED)
 
     data = request.data  # data is uploaded from IoT
-    
     # list of parameters to be checked
-    params = ['temp', 'salinity', 'clarity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
+    params = ['temp', 'salinity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
 
     output = {}     # output for json data
     for param in params:
