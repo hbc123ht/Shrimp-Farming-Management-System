@@ -69,11 +69,9 @@ def update_params(request, username):
         output[param + '_value'] = data[param]
         output[param + '_notice'] = CheckQuality(param, data[param])
 
-    with open("metadata.json", "w") as f:
-        json.dump(output, f, indent=2)
-
+ 
     channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": {'Hiep' : 'CP'},})
+    async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": output})
     
     
 
