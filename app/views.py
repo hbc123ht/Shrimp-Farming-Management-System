@@ -49,7 +49,6 @@ def update_params(request, username):
     :username username of an user
     :return status code
     """
-    print(request.data)
     try:
         user = User.objects.get(username = username)
     except:
