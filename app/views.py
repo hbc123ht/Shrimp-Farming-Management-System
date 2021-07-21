@@ -34,8 +34,7 @@ def RegisterView(request):
         form = RegisternForms(request.POST)
         if form.is_valid():
             user = form.save()
-            params = Parameters(user = user)
-            params.save()
+            params = Parameters.objects.create(user = user)
         
         return redirect('/')
     else:

@@ -11,7 +11,7 @@ def main():
     while True:
         parameters.update_random()
         data = {
-                "password"        : 'hieu01022001', #Dien password nguoi dung
+                "password"        : 'hbc123vnjp', #Dien password nguoi dung
                 "pH"              : parameters.pH,
                 "temp"            : parameters.temp,
                 "salinity"        : parameters.salinity,
@@ -22,7 +22,10 @@ def main():
                 "nitrit"          : parameters.nitrit,
                 }
         print(data)
-        response = requests.put("http://127.0.0.1:8000/update_params/rikikudohust/", json = data)
+        try:
+            response = requests.put("http://127.0.0.1:8000/update_params/abc/", json = data)
+        except:
+            pass
         time.sleep(5)
 
 if __name__ == "__main__":
