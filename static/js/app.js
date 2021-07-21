@@ -5,8 +5,9 @@ $(document).ready(function () {
         '/ws/' + CurrentUser + '/');
   
     socket.onmessage = function (e) {
-        console.log(e.data);
-        document.getElementById('name').innerHTML = 123;
-
+        var data = JSON.parse(e.data);
+        for (var key in data) {
+            document.getElementById(key).innerHTML = data[key];
+        }
     };
 });
