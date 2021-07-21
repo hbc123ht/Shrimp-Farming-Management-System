@@ -24,3 +24,4 @@ class Consumer(AsyncWebsocketConsumer):
     async def update_params(self, event):
         await self.send(text_data=json.dumps(event['text']))
 
+        

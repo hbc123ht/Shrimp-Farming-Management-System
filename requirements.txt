@@ -1,3 +1,4 @@
 django
 django-crispy-forms
 channels==3.0.1
+requests==2.26.0

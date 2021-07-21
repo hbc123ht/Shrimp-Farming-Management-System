@@ -1,9 +1,10 @@
+from app.utils import CheckQuality
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status, views
+from rest_framework import status
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import json
@@ -11,8 +12,6 @@ import json
 from app.forms import RegisternForms
 from django.contrib.auth.models import User
 from app.models import Parameters
-
-from app.utils import CheckQuality
 
 # Create your views here.
 @login_required
@@ -56,30 +55,25 @@ def update_params(request, username):
     except:
         return Response(status.HTTP_401_UNAUTHORIZED)
 
+    
     if not user.check_password(request.data['password']):
         return Response(status.HTTP_401_UNAUTHORIZED)
-    # kwargs = {
-    #         'temp' : request.data['temp'], 
-    #         'salinity' : request.data['salinity'], 
-    #         'clarity' : request.data['clarity'], 
-    #         'pH' : request.data['pH'], 
-    #         'alkalinity' : request.data['alkalinity'], 
-    #         'oxygen' : request.data['oxygen'], 
-    #         'hydrogen_sulfide' : request.data['hydrogen_sulfide'], 
-    #         'amonia' : request.data['amonia'], 
-    #         'nitrit' : request.data['nitrit'], 
-    #         'Ca' : request.data['Ca'], 
-    #         'Mg' : request.data['Mg'], 
-    #         'K' : request.data['K'],
-    # }
-    CheckQuality('pH', 6)
 
-    #step2
-    # result = check(**kwargs)
+    data = request.data  # data is uploaded from IoT
     
-    #step3
+    # list of parameters to be checked
+    params = ['temp', 'salinity', 'clarity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
+
+    output = {}     # output for json data
+    for param in params:
+        output[param + '_value'] = data[param]
+        output[param + '_notice'] = CheckQuality(param, data[param])
+
+    with open("metadata.json", "w") as f:
+        json.dump(output, f, indent=2)
+
     channel_layer = get_channel_layer()
-    async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": {},})
+    async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": {'Hiep' : 'CP'},})
     
     
 
