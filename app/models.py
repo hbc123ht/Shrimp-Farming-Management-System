@@ -10,7 +10,6 @@ class Parameters(models.Model):
     ph               = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('Ph_amount'), null = True, blank = True)
     temp             = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('temperature'), null = True, blank = True)
     salinity         = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('salinity'), null = True, blank = True)
-    clarity          = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('clarity'), null = True, blank = True)
     alkalinity       = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('alkalinity'), null = True, blank = True)
     oxygen           = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('oxygen'), null = True, blank = True)
     hydrogen_sulfide = models.DecimalField(decimal_places=2, max_digits=1000, verbose_name=_('hydrogen_sulfide'), null = True, blank = True)
