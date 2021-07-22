@@ -1,3 +1,4 @@
+from django.http import request
 from app.utils import CheckQuality
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -12,20 +13,19 @@ import json
 from app.forms import RegisternForms
 from django.contrib.auth.models import User
 from app.models import Parameters
+from django.views.generic.base import TemplateView
+from django.utils.decorators import method_decorator
 
 # Create your views here.
-@login_required
-def index(request):
-    return render(request, 'dashboard/index.html', context = {})
 
-class ArticleDetailView(DetailView):
+@method_decorator(login_required, name='dispatch')
+class Dashboard(TemplateView):
 
-    model = Parameters
     template_name = 'dashboard/index.html'
-    context_object_name = 'params'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['param'] = Parameters.objects.get(user = self.request.user)
         return context
 
 
@@ -58,9 +58,22 @@ def update_params(request, username):
     if not user.check_password(request.data['password']):
         return Response(status.HTTP_401_UNAUTHORIZED)
 
-    data = request.data  # data is uploaded from IoT
+    data = request.data  
+
+    user = User.objects.get(username = username)
+    Parameters.objects.filter(user = user).update(
+                                            ph = data['pH'],
+                                            temp = data['temp'],
+                                            salinity = data['salinity'],
+                                            alkalinity = data['alkalinity'],
+                                            oxygen = data['oxygen'],
+                                            hydrogen_sulfide = data['hydrogen_sulfide'],
+                                            amonia = data['amonia'],
+                                            nitrit = data['nitrit'],     
+                                            )
     # list of parameters to be checked
     params = ['temp', 'salinity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
+    
 
     output = {}     # output for json data
     for param in params:
