@@ -3,57 +3,56 @@
 
 {% block main %}
 <div class="container">
-    <h2>Contextual Classes</h2>
-    <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
+    <h2>Dashboard</h2>
     <table class="table">
       <thead>
         <tr>
-          <th id = "name">Parameters</th>
+          <th>Parameters</th>
           <th>Value</th>
           <th>Notice</th>
         </tr>
       </thead>
       <tbody>
-          <tr>
-              <td>Temperature</td>
-              <td id="temp_value"> Defaultson</td>
-              <td id="temp_notice">def@somemail.com</td>
-          </tr>
-          <tr>
-              <td>pH</td>
-              <td id="pH_value">Doe</td>
-              <td id="pH_notice">john@example.com</td>
-          </tr>
-          <tr>
-              <td>Salinity</td>
-              <td id="salinity_value">Moe</td>
-              <td id="salinity_notice">mary@example.com</td>
-          </tr>
-          <tr>
-              <td>Alkalinity</td>
-              <td id="alkalinity_value">Dooley</td>
-              <td id="alkalinity_notice">july@example.com</td>
-          </tr>
-          <tr>
-              <td>Oxygen</td>
-              <td id="oxygen_value">Refs</td>
-              <td id="oxygen_notice">bo@example.com</td>
-          </tr>
-          <tr>
-              <td>Hydrogen_sulfide</td>
-              <td id="hydrogen_sulfide_value">Activeson</td>
-              <td id="hydrogen_sulfide_notice">act@example.com</td>
-          </tr>
-          <tr>
-              <td>Amonia</td>
-              <td id="amonia_value">Activeson</td>
-              <td id="amonia_notice">act@example.com</td>
-          </tr>
-          <tr>
-              <td>Nitrit</td>
-              <td id="nitrit_value">Activeson</td>
-              <td id="nitrit_notice">act@example.com</td>
-          </tr>
+        <tr>
+            <td>Temperature</td>
+            <td id="temp_value"> {{ param.temp }}</td>
+            <td id="temp_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>pH</td>
+            <td id="pH_value">{{ param.ph }}</td>
+            <td id="pH_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>Salinity</td>
+            <td id="salinity_value">{{ param.salinity }}</td>
+            <td id="salinity_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>Alkalinity</td>
+            <td id="alkalinity_value">{{ param.alkalinity }}</td>
+            <td id="alkalinity_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>Oxygen</td>
+            <td id="oxygen_value">{{ param.oxygen }}</td>
+            <td id="oxygen_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>Hydrogen_sulfide</td>
+            <td id="hydrogen_sulfide_value">{{ param.hydrogen_sulfide }}</td>
+            <td id="hydrogen_sulfide_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>Amonia</td>
+            <td id="amonia_value">{{ param.amonia }}</td>
+            <td id="amonia_notice">The value is fine</td>
+        </tr>
+        <tr>
+            <td>Nitrit</td>
+            <td id="nitrit_value">{{ param.nitrit }}</td>
+            <td id="nitrit_notice">The value is fine</td>
+        </tr>
       </tbody>
     </table>
 </div>
