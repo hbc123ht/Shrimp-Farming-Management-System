@@ -1,8 +1,10 @@
 from django.http import request
-from app.utils import CheckQuality
+from app.utils import CheckQuality, send_alert
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.detail import DetailView
+from django.views.generic.base import TemplateView
+from django.utils.decorators import method_decorator
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -13,8 +15,6 @@ import json
 from app.forms import RegisternForms
 from django.contrib.auth.models import User
 from app.models import Parameters
-from django.views.generic.base import TemplateView
-from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -79,6 +79,8 @@ def update_params(request, username):
     for param in params:
         output[param + '_value'] = data[param]
         output[param + '_notice'] = CheckQuality(param, data[param])
+        if output[param + '_notice'] != 'The value is fine':
+            send_alert()
 
  
     channel_layer = get_channel_layer()

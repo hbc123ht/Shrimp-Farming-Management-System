@@ -1,5 +1,6 @@
 import json
 from django.conf import settings
+from twilio.rest import Client 
 # checking quality of parameter 
 # based on http://www.binhlan.com/Chat-luong-nuoc-nuoi-tom-ca.html?fbclid=IwAR3d-6WkSvgOMufUlNOEKBr3gOIPfnmUgkTtd5tq7LoN0DUUPhuNv-wkaGY#N7
 def CheckQuality(key, value):
@@ -51,3 +52,14 @@ def avg_score(temp, salinity, clarity, pH, alkalinity, oxygen, hydrogen_sulfide,
     
     total_score = 100 * (temp_score + salinity_score + clarity_score + pH_score + alkalinity_score + oxygen_score + hydrogen_sulfide_score + amonia_score + nitrit_score)
     return total_score/9
+
+def send_alert():
+    account_sid = 'AC6f7d22b8fde9eafc61f9e4b9b6292f81' 
+    auth_token = 'f1492ca60267ab290c72e1f35b286ea3' 
+    client = Client(account_sid, auth_token) 
+    
+    client.messages.create(  
+                                messaging_service_sid='MGa52dc17c303daf64f6cfdbc49e77673d',       
+                                to='+84857857599',
+                                body='The quality of water is being poor. Pleash check and solve the problem.',
+                            )
