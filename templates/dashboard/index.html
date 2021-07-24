@@ -14,7 +14,7 @@
 
 {% block main %}
 <div class="container">
-    <h2>Dashboard</h2>
+    <h1>Dashboard</h1>
     <table class="table">
       <thead>
         <tr>
@@ -27,42 +27,42 @@
         <tr>
             <td>Temperature</td>
             <td id="temp_value"> {{ param.temp }}</td>
-            <td id="temp_notice">The value is fine</td>
+            <td class ="notice_fine" id="temp_notice">The value is fine</td>
         </tr>
         <tr>
             <td>pH</td>
             <td id="pH_value">{{ param.ph }}</td>
-            <td id="pH_notice">The value is fine</td>
+            <td class ="notice_fine"  id="pH_notice">The value is fine</td>
         </tr>
         <tr>
             <td>Salinity</td>
             <td id="salinity_value">{{ param.salinity }}</td>
-            <td id="salinity_notice">The value is fine</td>
+            <td class ="notice_fine"  id="salinity_notice">The value is fine</td>
         </tr>
         <tr>
             <td>Alkalinity</td>
             <td id="alkalinity_value">{{ param.alkalinity }}</td>
-            <td id="alkalinity_notice">The value is fine</td>
+            <td class ="notice_fine"  id="alkalinity_notice">The value is fine</td>
         </tr>
         <tr>
             <td>Oxygen</td>
             <td id="oxygen_value">{{ param.oxygen }}</td>
-            <td id="oxygen_notice">The value is fine</td>
+            <td  class ="notice_fine" id="oxygen_notice">The value is fine</td>
         </tr>
         <tr>
             <td>Hydrogen_sulfide</td>
             <td id="hydrogen_sulfide_value">{{ param.hydrogen_sulfide }}</td>
-            <td id="hydrogen_sulfide_notice">The value is fine</td>
+            <td class ="notice_fine"  id="hydrogen_sulfide_notice">The value is fine</td>
         </tr>
         <tr>
             <td>Amonia</td>
             <td id="amonia_value">{{ param.amonia }}</td>
-            <td id="amonia_notice">The value is fine</td>
+            <td  class ="notice_fine" id="amonia_notice">The value is fine</td>
         </tr>
         <tr>
             <td>Nitrit</td>
             <td id="nitrit_value">{{ param.nitrit }}</td>
-            <td id="nitrit_notice">The value is fine</td>
+            <td class ="notice_fine"  id="nitrit_notice">The value is fine</td>
         </tr>
       </tbody>
     </table>
