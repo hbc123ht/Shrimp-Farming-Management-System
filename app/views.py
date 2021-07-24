@@ -15,6 +15,7 @@ import json
 from app.forms import RegisternForms
 from django.contrib.auth.models import User
 from app.models import Parameters
+from rules.fuzzy import Compute
 
 # Create your views here.
 
@@ -74,6 +75,7 @@ def update_params(request, username):
     # list of parameters to be checked
     params = ['temp', 'salinity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
     
+    print(Compute(data['temp'], data['salinity'], data['pH'], data['oxygen']))
 
     output = {}     # output for json data
     is_alert = 0
