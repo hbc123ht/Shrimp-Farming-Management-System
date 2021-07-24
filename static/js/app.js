@@ -104,6 +104,11 @@ function update_color(data){
         nitrit.classList.add("notice_notfine")
     }
 }
+
+function update_bar(){
+
+}
+
 $(document).ready(function () {
 //    let socket = new WebSocket(`ws://127.0.0.1:8000/?session_key=${sessionKey}`);
     var socket = new WebSocket(
@@ -114,10 +119,21 @@ $(document).ready(function () {
         var data = JSON.parse(e.data);
         for (var key in data) {
             if (key == "overall_quality"){
+                quality = parseInt(data[key] * 100);
+                evaluation = null;
                 
+                if (quality <= 15) evaluation = "Poor";
+                else if (quality <= 45) evaluation = "Regular";
+                else if (quality <= 75) evaluation = "Good";
+                else evaluation = "Excellent";
+                
+                document.getElementById(key).innerHTML = evaluation;
+
+                update_bar(quality);
             }
             else document.getElementById(key).innerHTML = data[key];
         }
         update_color(data);
+        update_bar();
     };
 });
