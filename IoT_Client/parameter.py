@@ -15,11 +15,11 @@ class Parameters():
         pass
 
     def update_random(self):
-        self.pH               = round(uniform(7.5, 7.7),2)
-        self.temp             = round(uniform(21,22),2)
-        self.salinity         = round(uniform(15,16),2)
-        self.alkalinity       = round(uniform(100,110),1)
+        self.pH               = round(uniform(6, 10),2)
+        self.temp             = round(uniform(10,30),2)
+        self.salinity         = round(uniform(10,25),2)
+        self.alkalinity       = round(uniform(70,150),1)
         self.oxygen           = round(uniform(5,7),1)
         self.hydrogen_sulfide = round(uniform(0.01, 0.014),4)
-        self.amonia           = round(uniform(0.2, 0.25),3)
-        self.nitrit           = round(uniform(0.8, 0.9),2)
+        self.amonia           = round(uniform(0.05, 0.1),3)
+        self.nitrit           = round(uniform(0.1, 0.2),2)
