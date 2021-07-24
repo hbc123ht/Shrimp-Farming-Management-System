@@ -75,23 +75,17 @@ def update_params(request, username):
     # list of parameters to be checked
     params = ['temp', 'salinity', 'pH', 'alkalinity', 'oxygen', 'hydrogen_sulfide', 'amonia', 'nitrit']
     
-    print(Compute(data['temp'], data['salinity'], data['pH'], data['oxygen']))
 
     output = {}     # output for json data
-    is_alert = 0
     for param in params:
         output[param + '_value'] = data[param]
         output[param + '_notice'] = CheckQuality(param, data[param])
-        if output[param + '_notice'] != 'The value is fine' and not is_alert:
-            is_alert = 1
-            send_alert()
-
+    
+    output['overall_quality'] = Compute(data['temp'], data['salinity'], data['pH'], data['oxygen'])
  
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(username, { "type": "update.params", "text": output})
     
-    
-
     return Response(status.HTTP_200_OK)
     
 
