@@ -7,13 +7,13 @@ def CheckQuality(key, value):
     MIN = settings.RULES['{}_min'.format(key)]
     MAX = settings.RULES['{}_max'.format(key)]
     if MIN is not None and value < MIN:
-        return "The value is too low, it should be higher than {} and lower than {}".format(MIN, MAX)
+        return "The value is too low"
     elif MAX is not None and value > MAX:
-        return "The value is too high, it should be higher than {} and lower than {}".format(MIN, MAX)
+        return "The value is too high"
     elif MIN is None and value > MAX:
-        return "The value is too high, it should be lower than {}".format(MAX)
+        return "The value is too high"
     elif MAX is None and value < MIN:
-        return "The value is too low, it should be higher than {}".format(MIN)
+        return "The value is too low"
     else:
         return "The value is fine"
 
