@@ -165,7 +165,7 @@ RULES = {
     'hydrogen_sulfide_max' : 0.03,
 
     'amonia_min' : None,
-    'amonia_max' : 0.01, 
+    'amonia_max' : 0.1, 
     
     'nitrit_min' : None,
     'nitrit_max' : 0.2, 
