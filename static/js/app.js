@@ -29,7 +29,6 @@ function update_color(data){
             salinity.classList.remove(("notice_fine"));
         }
         salinity.classList.add("notice_notfine");
-        console.log("fsfd");
     }
     //pH
     if (data.pH_value >= 7.5 && data.pH_value <= 8.5) {
@@ -80,7 +79,7 @@ function update_color(data){
         hydrogen_sulfide.classList.add("notice_notfine")
     }
     //amonia
-    if (data.amonia_value <= 0.01) {
+    if (data.amonia_value <= 0.1) {
         if (amonia.classList.contains("notice_notfine")) {
             amonia.classList.remove("notice_notfine")
         }
@@ -105,8 +104,9 @@ function update_color(data){
     }
 }
 
-function update_bar(){
-
+function update_bar(quality){
+    document.getElementById("quality-value").innerHTML = quality;
+    document.getElementById("quality-bar").style["width"] = quality + "%";
 }
 
 $(document).ready(function () {
@@ -134,6 +134,5 @@ $(document).ready(function () {
             else document.getElementById(key).innerHTML = data[key];
         }
         update_color(data);
-        update_bar();
     };
 });
