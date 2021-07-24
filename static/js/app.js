@@ -9,5 +9,8 @@ $(document).ready(function () {
         for (var key in data) {
             document.getElementById(key).innerHTML = data[key];
         }
+        document.getElementById("quality-value").innerHTML = data["temp_value"];
+        document.getElementById("quality-bar").style["width"] = data["temp_value"] + "%";
+        console.log(document.getElementById("quality-bar").style.property);
     };
 });

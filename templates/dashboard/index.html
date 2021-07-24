@@ -3,7 +3,7 @@
 
 {% block main %}
 <div class="container">
-    <h2>Dashboard</h2>
+    <h1>Dashboard</h1>
     <table class="table">
       <thead>
         <tr>
@@ -56,7 +56,21 @@
       </tbody>
     </table>
 </div>
-
+<div class="container">
+    <h1 class="p-3">
+        Quality
+    </h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="progress-title">Overall</h3>
+            <div class="progress red">
+                <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:65%;" id="quality-bar">
+                    <div class="progress-value" id="quality-value">65%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     let CurrentUser = '{{ request.user.username }}';
 </script>
