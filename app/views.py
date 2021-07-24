@@ -76,10 +76,12 @@ def update_params(request, username):
     
 
     output = {}     # output for json data
+    is_alert = 0
     for param in params:
         output[param + '_value'] = data[param]
         output[param + '_notice'] = CheckQuality(param, data[param])
-        if output[param + '_notice'] != 'The value is fine':
+        if output[param + '_notice'] != 'The value is fine' and not is_alert:
+            is_alert = 1
             send_alert()
 
  
