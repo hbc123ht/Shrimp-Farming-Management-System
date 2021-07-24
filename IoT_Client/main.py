@@ -16,14 +16,14 @@ def main():
                 "temp"            : parameters.temp,
                 "salinity"        : parameters.salinity,
                 "alkalinity"      : parameters.alkalinity,
-                "oxygen"          : parameters.hydrogen_sulfide,
+                "oxygen"          : parameters.oxygen,
                 "hydrogen_sulfide": parameters.hydrogen_sulfide,
                 "amonia"          : parameters.amonia,
                 "nitrit"          : parameters.nitrit,
                 }
         print(data)
         try:
-            response = requests.put("http://127.0.0.1:8000/update_params/abc/", json = data)
+            response = requests.put("http://127.0.0.1:8000/update_params/test/", json = data)
         except:
             pass
         time.sleep(5)
